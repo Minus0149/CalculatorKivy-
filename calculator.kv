@@ -1,0 +1,114 @@
+WidgetExample:
+
+    padding : 10
+    size:self.size
+
+<WidgetExample>:
+    size:root.width,root.height
+    canvas.before:
+        Color:
+            rgba:(0,0,0,.69)
+        Rectangle:
+            size:self.size
+            pos:self.pos
+
+
+    orientation: "vertical"
+    TextInput:
+        id: Calculator_display
+        multiline: False
+        size_hint:(1,0.20)
+        spacing:0
+        base_direction: "weak_rtl"
+        disabled: True
+        font_size:45
+
+
+    GridLayout:
+        spacing:5
+        rows:5
+        cols:4
+        Rounded:
+            text:"%"
+            on_press: root.percent("%")
+        Rounded:
+            id:clear
+            text:"C"
+            on_press: root.clear()
+        Rounded:
+            text:"<<"
+            on_press:root.bs()
+        Rounded:
+            text:"÷"
+            on_press: root.math_sign("/")
+        RoundedButton:
+            text:"7"
+            on_press:root.button_press(7)
+        RoundedButton:
+            text:"8"
+            on_press:root.button_press(8)
+        RoundedButton:
+            text:"9"
+            on_press:root.button_press(9)
+        Rounded:
+            text:"x"
+            on_press: root.math_sign("*")
+        RoundedButton:
+            text:"4"
+            on_press:root.button_press(4)
+        RoundedButton:
+            text:"5"
+            on_press:root.button_press(5)
+        RoundedButton:
+            text:"6"
+            on_press:root.button_press(6)
+        Rounded:
+            text:"-"
+            on_press: root.math_sign("-")
+        RoundedButton:
+            text:"1"
+            on_press:root.button_press(1)
+        RoundedButton:
+            text:"2"
+            on_press:root.button_press(2)
+        RoundedButton:
+            text:"3"
+            on_press:root.button_press(3)
+        Rounded:
+            text:"+"
+            on_press: root.math_sign("+")
+
+        RoundedButton:
+            text:"+/-"
+            on_press: root.pn()
+        RoundedButton:
+            text:"0"
+            on_press:root.button_press(0)
+        RoundedButton:
+            text:"."
+            on_press:root.dot()
+        Rounded:
+            text:"="
+            on_press: root.ans()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal:''
+    canvas.before:
+        Color:
+            rgba:(211/255,211/255,211/255,43/255) if self.state == 'normal' else (211/255,211/255,211/255,100/255)
+        RoundedRectangle:
+            size:self.size
+            pos:self.pos
+            radius:[7.5]
+
+<Rounded@Button>
+    background_color:(0,0,0,0)
+    background_normal:''
+    canvas.before:
+        Color:
+            rgba: (211/255,211/255,211/255,100/255) if self.state == 'normal' else (211/255,211/255,211/255,43/255)
+        RoundedRectangle:
+            size:self.size
+            pos:self.pos
+            radius:[7.5]
